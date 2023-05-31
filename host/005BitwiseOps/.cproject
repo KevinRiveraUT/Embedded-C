@@ -39,11 +39,11 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug.385850868" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug"/>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.1684181465.1327538292" name="001main.c" rcbsApplicability="disable" resourcePath="001main.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.1991901050.1153787629">
-						<tool id="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.1991901050.1153787629" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.1991901050"/>
+					<fileInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.1684181465.318799325" name="003SetBit.c" rcbsApplicability="disable" resourcePath="003SetBit.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.1991901050.1858595256">
+						<tool id="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.1991901050.1858595256" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.1991901050"/>
 					</fileInfo>
 					<sourceEntries>
-						<entry excluding="001main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="003SetBit.c|002SetBit.c|002BitTesting.c|001main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

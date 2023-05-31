@@ -7,12 +7,9 @@ int main(void){
 	printf("For the love of all that is holy, please enter a number: ");
 	scanf("%d", &a);
 
-	int32_t oddeven = a & 1;
+	int32_t clearedbitted = a & 72;
 
-	if (oddeven == 1)
-		printf("\nNumber provided is odd.");
-	else
-		printf("\nNumber provided is even.");
+	printf("\nNumber provided with bits 4 5 6 cleared is: %d", clearedbitted);
 
 
 	while(getchar() != '\n'){}
