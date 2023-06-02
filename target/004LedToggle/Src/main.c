@@ -61,14 +61,20 @@ int main(void)
 
 	// Activate bits
 	// rcc enable, bit 0 to 1
-	*pAhb1enr_rcc = *pAhb1enr_rcc | 0x00000001;
-	// gpioa port mode, bits 18, 19 to 01
-	*pGpioa_port_mode &= 0xFFFFBFFF;
-	*pGpioa_port_mode |= 0x00000400;
+	*pAhb1enr_rcc = *pAhb1enr_rcc | (1 << 0);
+	// gpioa port mode, bits 10, 11 to 01
+	*pGpioa_port_mode &= ~(3 << 10);
+	*pGpioa_port_mode |= (1 << 10);
 	// gpio data output, bit 5 to 1
-	*pGpioa_data_output |= 0x00000020;
+	*pGpioa_data_output |= (1 << 5);
 
 
     /* Loop forever */
-	while(1);
+	while(1)
+	{
+		for (uint32_t i = 0; i < 100000; i++);
+		*pGpioa_data_output &= ~(1 << 5);
+		for (uint32_t i = 0; i < 100000; i++);
+		*pGpioa_data_output |= (1 << 5);
+	}
 }
