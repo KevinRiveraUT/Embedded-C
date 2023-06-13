@@ -83,29 +83,19 @@ int main(void)
 	*pGpioa_port_mode &= ~(0 << 0);
 	*pGpioa_port_mode &= ~(0 << 1);
 
-	// if PA0 = LOW
-	if((*pGpioa_data_input & 0x1 ) == 0)
+	while(1)
 	{
-		// gpio data output, bit 5 to 0, turn LD2 OFF
-		*pGpioa_data_output &= (1 << 5);
+			// if PA0 = LOW
+			if((*pGpioa_data_input & 0x1 ) == 0)
+			{
+				// gpio data output, bit 5 to 0, turn LD2 OFF
+				*pGpioa_data_output &= (0 << 5);
+			}
+			// else, PA0 = HIGH
+			else
+			{
+				// gpio data output, bit 5 to 1, turn LD2 ON
+				*pGpioa_data_output |= (1 << 5);
+			}
 	}
-	// else, PA0 = HIGH
-	else
-	{
-		// gpio data output, bit 5 to 1, turn LD2 ON
-		*pGpioa_data_output |= (1 << 5);
-	}
-
-
-
-
-
-    /* Loop forever */
-//	while(1)
-//	{
-//		for (uint32_t i = 0; i < 100000; i++);
-//		*pGpioa_data_output &= ~(1 << 5);
-//		for (uint32_t i = 0; i < 100000; i++);
-//		*pGpioa_data_output |= (1 << 5);
-//	}
 }
