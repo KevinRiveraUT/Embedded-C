@@ -44,10 +44,10 @@ int main(void)
 	 */
 
 	// Store register addresses
-	uint32_t *const pGpioa_port_mode 		= (uint32_t*)0x40020000;
-	uint32_t const *const pGpioa_data_input = (uint32_t*)0x40020010;
-	uint32_t *const pGpioa_data_output 		= (uint32_t*)0x40020014;
-	uint32_t *const pAhb1enr_rcc 			= (uint32_t*)0x40023830;
+	uint32_t volatile *const pGpioa_port_mode 			= (uint32_t*)0x40020000;
+	uint32_t volatile const *const pGpioa_data_input 	= (uint32_t*)0x40020010;
+	uint32_t volatile *const pGpioa_data_output 		= (uint32_t*)0x40020014;
+	uint32_t volatile *const pAhb1enr_rcc 				= (uint32_t*)0x40023830;
 
 	// Activate bits
 	// rcc enable, bit 0 to 1
