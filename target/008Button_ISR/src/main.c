@@ -30,7 +30,8 @@ int main(void)
 			//Some delay until button debouncing gets over
 			for(uint32_t volatile i=0;i<500000/2;i++);
 			g_button_press_count++;
-			printf("Button is pressed : %lu\n",g_button_press_count);
+
+			//printf("Button is pressed : %lu\n",g_button_press_count);
 			g_button_pressed = 0;
 		}
 
