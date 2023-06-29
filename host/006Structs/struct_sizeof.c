@@ -10,18 +10,9 @@ struct carModel
 int main(void)
 {
 	struct carModel  carBMW = {0};
-	printf("Sizeof of struct carModel is %I64u\n",sizeof(struct carModel));
+	printf("Sizeof of struct carModel is %I64u",sizeof(struct carModel));
 
     getchar();
 
 	return 0;
 }
-
-
-
-
-
-
-
-
-
