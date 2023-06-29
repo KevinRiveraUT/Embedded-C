@@ -25,6 +25,7 @@ int main()
 	scanf("%x", &myHex);
 
     // Tedious so as to not use math.h?
+    // Instructor method is to shift myHex right, then mask
     myPacket.crc = getData(&myHex, 0, 0b11);
     myPacket.status = getData(&myHex, 2, 0b1);
     myPacket.payload = getData(&myHex, 3, 0b111111111111);
