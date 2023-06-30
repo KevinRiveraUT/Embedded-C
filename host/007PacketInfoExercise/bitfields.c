@@ -13,8 +13,6 @@ struct Packet
     uint32_t     addrMode   :1;
 };
 
-uint16_t getData(uint32_t *pPacket, uint8_t startingBit, uint32_t mask);
-
 int main()
 {
     struct Packet myPacket;
@@ -24,17 +22,14 @@ int main()
     fflush(stdout);
 	scanf("%x", &myHex);
 
-    // Tedious so as to not use math.h?
-    // Instructor approach:
-    // myPacket.payload = (uint16_t) ((myHex >> 3) & 0xFFF);
-    myPacket.crc = getData(&myHex, 0, 0b11);
-    myPacket.status = getData(&myHex, 2, 0b1);
-    myPacket.payload = getData(&myHex, 3, 0b111111111111);
-    myPacket.bat = getData(&myHex, 15, 0b111);
-    myPacket.sensor = getData(&myHex, 18, 0b111);
-    myPacket.longAddr = getData(&myHex, 21, 0b11111111);
-    myPacket.shortAddr = getData(&myHex, 27, 0b11);
-    myPacket.addrMode = getData(&myHex, 30, 0b1);
+    myPacket.crc = (uint8_t) (myHex & 0x3);
+    myPacket.status = (uint8_t) ((myHex >> 2) & 0x1);
+    myPacket.payload = (uint16_t) ((myHex >> 3) & 0xFFF);
+    myPacket.bat = (uint8_t) ((myHex >> 15) & 0x7);
+    myPacket.sensor = (uint8_t) ((myHex >> 18) & 0x7);
+    myPacket.longAddr = (uint8_t) ((myHex >> 21) & 0xFF);
+    myPacket.shortAddr = (uint8_t) ((myHex >> 29) & 0x3);
+    myPacket.addrMode = (uint8_t) ((myHex >> 31) & 0x1);
 
     printf("CRC: %x\n", myPacket.crc);
     printf("Status: %x\n", myPacket.status);
@@ -47,10 +42,4 @@ int main()
     printf("Size of struct is: %d\n", sizeof(myPacket));
 
     return 0;
-}
-
-uint16_t getData(uint32_t *pPacket, uint8_t startingBit, uint32_t mask)
-{
-    uint16_t myValue = *pPacket & (mask << startingBit) >> startingBit; 
-    return myValue;
 }
