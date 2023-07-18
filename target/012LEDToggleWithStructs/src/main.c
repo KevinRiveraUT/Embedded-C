@@ -28,9 +28,9 @@ int main(void)
 	//	Bit 0
 
 	// Store register addresses
-	uint32_t *pGpioa_port_mode 		= (uint32_t*)0x40020000;
-	uint32_t *pGpioa_data_output 	= (uint32_t*)0x40020014;
-	uint32_t *pAhb1enr_rcc 			= (uint32_t*)0x40023830;
+	GPIO_MODER_t *pGpioa_port_mode 		= (GPIO_MODER_t*)0x40020000;
+	GPIO_OTYPER_t *pGpioa_data_output 	= (GPIO_OTYPER_t*)0x40020014;	
+	RCC_AHB1ENR_t *pAhb1enr_rcc 		= (RCC_AHB1ENR_t*)0x40023830;
 
 	// Reset register values
 	//	*ahb1enr_rcc 					= (uint32_t)0x00000000;
@@ -39,20 +39,27 @@ int main(void)
 
 	// Activate bits
 	// rcc enable, bit 0 to 1
-    	*pAhb1enr_rcc = *pAhb1enr_rcc | (1 << 0);
+    // *pAhb1enr_rcc = *pAhb1enr_rcc | (1 << 0);
+    pAhb1enr_rcc->gpioa_en = 1;
+
 	// gpioa port mode, bits 10, 11 to 01
-	*pGpioa_port_mode &= ~(3 << 10);
-	*pGpioa_port_mode |= (1 << 10);
+	// *pGpioa_port_mode &= ~(3 << 10);
+	// *pGpioa_port_mode |= (1 << 10);
+	pGpioa_port_mode->moder5 = 1;
+
 	// gpio data output, bit 5 to 1
-	*pGpioa_data_output |= (1 << 5);
+	// *pGpioa_data_output |= (1 << 5);
+	pGpioa_data_output->ot5 = 1;
 
 
     /* Loop forever */
 	while(1)
 	{
 		for (uint32_t i = 0; i < 100000; i++);
-		*pGpioa_data_output &= ~(1 << 5);
+		// *pGpioa_data_output &= ~(1 << 5);
+		pGpioa_data_output->ot5 = 0;
 		for (uint32_t i = 0; i < 100000; i++);
-		*pGpioa_data_output |= (1 << 5);
+		// *pGpioa_data_output |= (1 << 5);
+		pGpioa_data_output->ot5 = 1;
 	}
 }
