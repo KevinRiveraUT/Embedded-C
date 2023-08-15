@@ -28,9 +28,9 @@ int main(void)
 	//	Bit 0
 
 	// Store register addresses
-	GPIO_MODER_t *pGpioa_port_mode 		= (GPIO_MODER_t*)0x40020000;
-	GPIO_OTYPER_t *pGpioa_data_output 	= (GPIO_OTYPER_t*)0x40020014;	
-	RCC_AHB1ENR_t *pAhb1enr_rcc 		= (RCC_AHB1ENR_t*)0x40023830;
+	GPIO_MODER_t volatile *const pGpioa_port_mode 		= (GPIO_MODER_t*)0x40020000;
+	GPIO_OTYPER_t volatile *const pGpioa_data_output 	= (GPIO_OTYPER_t*)0x40020014;	
+	RCC_AHB1ENR_t volatile *const pAhb1enr_rcc 			= (RCC_AHB1ENR_t*)0x40023830;
 
 	// Reset register values
 	//	*ahb1enr_rcc 					= (uint32_t)0x00000000;
@@ -55,10 +55,10 @@ int main(void)
     /* Loop forever */
 	while(1)
 	{
-		for (uint32_t i = 0; i < 100000; i++);
+		for (uint32_t i = 0; i < 1000; i++);
 		// *pGpioa_data_output &= ~(1 << 5);
 		pGpioa_data_output->ot5 = 0;
-		for (uint32_t i = 0; i < 100000; i++);
+		for (uint32_t i = 0; i < 1000; i++);
 		// *pGpioa_data_output |= (1 << 5);
 		pGpioa_data_output->ot5 = 1;
 	}
